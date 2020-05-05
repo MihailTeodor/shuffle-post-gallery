@@ -1,0 +1,2 @@
+* Per usare questo plugin usare lo shortcode  [ShuffleGallery] nella homepage o in qualsiasi altra pagina. La galleria si comporrà delle immagini di copertina degli ultimi 20 post. Cliccando su un'immagine si verrà indirizzati al post corrispondente.
+* Per una migliore visualizzazione della galleria settare come homepage del sito wordpress una pagina statica contenente lo shortcode e quindi la galleria, impostandone il template full-width.
