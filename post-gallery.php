@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Shuffle Post Gallery
-Version:     1.0.0
+Version:     1.1.0
 Author:      Mihail Teodor Gurzu
 Description: Multimedia Design and Production Project : Enables [ShuffleGallery] shortcode which outputs a post gallery.
 Text Domain: shuffle-post-gallery
