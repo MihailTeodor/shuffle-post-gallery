@@ -10,7 +10,7 @@ Domain Path: /languages
 
 defined( 'ABSPATH' ) or die;
 
-define( 'SPG_PLUGIN_VERSION', '1.0.0' );
+define( 'SPG_PLUGIN_VERSION', '1.1.0' );
 
 if ( ! class_exists( 'Shuffle_Post_Gallery' ) ) {
 	class Shuffle_Post_Gallery {
