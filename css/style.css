@@ -17,6 +17,39 @@
   width: 50%;
 }
 
+@media screen and (min-width: 768px) {
+  .spg-main-container .col-span {
+    width: 66.33333%;
+  }
+  .spg-main-container .normal-span {
+    width: 33.33333%;
+  }
+  .spg-main-container .row-span {
+    width: 33.33333%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .spg-main-container .col-span {
+    width: 100%;
+  }
+  .spg-main-container .normal-span {
+    width: 50%;
+  }
+  .spg-main-container .row-span {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .spg-main-container .col-span {
+    width: 50%;
+  }
+  .spg-main-container .row-span,
+  .spg-main-container .normal-span {
+    width: 25%;
+  }
+}
 .spg-main-container .my-sizer-element {
   width: 8.33333%;
 }

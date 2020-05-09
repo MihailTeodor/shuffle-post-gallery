@@ -130,7 +130,7 @@ if ( ! class_exists( 'Shuffle_Post_Gallery' ) ) {
 				case $ratio >= 1.67 :
 					return array( 'aspect' => 'aspect--32x9', 'span' => 'col-span', 'img_src' => $img_src );
 				default:
-					return array( 'aspect' => 'aspect--16x9', 'span' => '', 'img_src' => $img_src );
+					return array( 'aspect' => 'aspect--16x9', 'span' => 'normal-span', 'img_src' => $img_src );
 			}
 		}
 	}
