@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Shuffle Post Gallery
-Version:     1.1.0
+Version:     1.1.1
 Author:      Mihail Teodor Gurzu
 Description: Multimedia Design and Production Project : Enables [ShuffleGallery] shortcode which outputs a post gallery.
 Text Domain: shuffle-post-gallery
@@ -10,7 +10,7 @@ Domain Path: /languages
 
 defined( 'ABSPATH' ) or die;
 
-define( 'SPG_PLUGIN_VERSION', '1.1.0' );
+define( 'SPG_PLUGIN_VERSION', '1.1.1' );
 
 if ( ! class_exists( 'Shuffle_Post_Gallery' ) ) {
 	class Shuffle_Post_Gallery {

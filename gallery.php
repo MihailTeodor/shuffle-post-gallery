@@ -1,4 +1,5 @@
 <?php defined( 'ABSPATH' ) or die; ?>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="spg-main-container">
 	<div class="spg-container spg-container-controls">
 		<div class="row">

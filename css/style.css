@@ -17,6 +17,7 @@
   width: 50%;
 }
 
+
 @media screen and (min-width: 768px) {
   .spg-main-container .col-span {
     width: 66.33333%;
@@ -50,6 +51,7 @@
     width: 25%;
   }
 }
+
 .spg-main-container .my-sizer-element {
   width: 8.33333%;
 }
@@ -90,10 +92,13 @@
 .spg-main-container img {
   display: block;
   width: 100%;
-  
+
   max-width: none;
   height: 100%;
   object-fit: cover;
+    border-radius: 33px;
+    -moz-border-radius: 33px;
+    -webkit-border-radius: 33px;
 }
 
 .spg-main-container *,
