@@ -96,9 +96,9 @@
   max-width: none;
   height: 100%;
   object-fit: cover;
-    border-radius: 33px;
-    -moz-border-radius: 33px;
-    -webkit-border-radius: 33px;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
 }
 
 .spg-main-container *,
@@ -200,19 +200,16 @@
 
 .spg-main-container .btn-group .btn {
   float: left;
-  border-radius: 0;
+  border-radius: 3px;
+  margin: 1px;
 }
 
 .spg-main-container .btn-group .btn:first-child {
-  border-radius: 3px 0 0 3px;
-}
-
-.spg-main-container .btn-group .btn:not(:first-child) {
-  margin-left: -1px;
+  border-radius: 3px;
 }
 
 .spg-main-container .btn-group .btn:last-child {
-  border-radius: 0 3px 3px 0;
+  border-radius: 3px;
 }
 
 .spg-main-container .btn-group label.btn input[type=radio] {
@@ -410,6 +407,10 @@
 	transition: opacity .25s ease-in-out;
 	-moz-transition: opacity .25s ease-in-out;
 	-webkit-transition: opacity .25s ease-in-out;
+    border-radius: 0 0 20px 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+
 }
 
 .spg-main-container .picture-item:hover .picture-item__details {
