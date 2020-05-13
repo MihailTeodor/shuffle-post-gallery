@@ -37,10 +37,12 @@ if ( ! class_exists( 'Shuffle_Post_Gallery' ) ) {
 
 		// This function will generate the shortcode outout (HTML) and enqueue scripts
 		public function output_gallery( $atts ) {
+		    // Get the number of total posts
+            $nr_posts = wp_count_posts() -> publish;
 			// Get posts to show
 			$wp_query = new WP_Query( array(
 				'post_type'      => 'post',
-				'posts_per_page' => 20,
+				'posts_per_page' => $nr_posts,
 				'order'          => 'DESC',
 				'orderby'        => 'ID',
 				'meta_query'     => array(
@@ -113,7 +115,7 @@ if ( ! class_exists( 'Shuffle_Post_Gallery' ) ) {
 			// Register shuffle.js script and init script
 			wp_register_script( 'spg-shuffle', plugins_url( 'js/shuffle.min.js', __FILE__ ), array(), SPG_PLUGIN_VERSION, true );
 			wp_register_script( 'spg-shuffle-init', plugins_url( 'js/init.js', __FILE__ ), array( 'spg-shuffle' ), SPG_PLUGIN_VERSION, true );
-		}
+        }
 
 		// Function for calculate a post's "aspect", "span" and "img_src"
 		private function calculate_data( $post ) {

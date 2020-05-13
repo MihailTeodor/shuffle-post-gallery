@@ -44,7 +44,7 @@
 			<?php foreach( $posts as $post ) : ?>
 				<figure class="picture-item column <?php esc_attr_e( $post->spg_data['span'] ); ?>" data-groups='["<?php echo implode( '","', $post->category_slugs ); ?>"]' data-date-created="<?php esc_attr_e( $post->post_date ); ?>" data-title="<?php esc_attr_e( $post->post_title ); ?>">
 					<div class="aspect <?php esc_attr_e( $post->spg_data['aspect'] ); ?>">
-						<div class="aspect__inner"><img src="<?php esc_attr_e( $post->spg_data['img_src'] ); ?>" obj.alt="obj.alt"/></div>
+						<div class="aspect__inner hidden"><img src="<?php esc_attr_e( $post->spg_data['img_src'] ); ?>" obj.alt="obj.alt"/></div>
 						<div class="picture-item__details">
 							<figcaption class="picture-item__title"><a href="<?php the_permalink( $post ); ?>" target="_blank" rel="noopener"><?php esc_attr_e( $post->post_title ); ?></a></figcaption>
 						</div>
