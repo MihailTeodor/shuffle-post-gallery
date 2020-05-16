@@ -18,6 +18,7 @@ var Demo = function (element) {
 	this.addFilterButtons();
 	this.addSorting();
 	this.addSearchFilter();
+	this.addTransition();
 
 	this.mode = 'exclusive';
 };
@@ -44,6 +45,23 @@ Demo.prototype.addShuffleEventListeners = function () {
 	});
 };
 
+/**
+ * makes javascript wait for s*100 miliseconds
+ */
+const sleep = (s) => {
+	return new Promise(resolve => setTimeout(resolve, (s*100)))
+}
+
+/**
+ * Function needed to give time to shuffle.filter to make transitions of images before invoking the addTransition() method.
+ */
+Demo.prototype.filterMultyCallback = function (evt) {
+	this._handleFilterClick(evt);
+	sleep(4).then(() => {
+		this.addTransition();
+	})
+}
+
 Demo.prototype.addFilterButtons = function () {
 	var options = document.querySelector('.filter-options');
 
@@ -54,7 +72,7 @@ Demo.prototype.addFilterButtons = function () {
 	var filterButtons = Array.from(options.children);
 
 	filterButtons.forEach(function (button) {
-		button.addEventListener('click', this._handleFilterClick.bind(this), false);
+		button.addEventListener('click', this.filterMultyCallback.bind(this), false);
 	}, this);
 };
 
@@ -92,7 +110,6 @@ Demo.prototype._handleFilterClick = function (evt) {
 			btn.classList.add('active');
 			filterGroup = btnGroup;
 		}
-
 		this.shuffle.filter(filterGroup);
 	}
 };
@@ -104,6 +121,16 @@ Demo.prototype._removeActiveClassFromChildren = function (parent) {
 	}
 };
 
+/**
+ * Function needed to give time to shuffle.sort to make transitions of images before invoking the addTransition() method.
+ */
+Demo.prototype.sortingMultyCallback = function (evt) {
+	this._handleSortChange(evt);
+	sleep(4).then(() => {
+		this.addTransition();
+	})
+}
+
 Demo.prototype.addSorting = function () {
 	var buttonGroup = document.querySelector('.sort-options');
 
@@ -111,7 +138,7 @@ Demo.prototype.addSorting = function () {
 		return;
 	}
 
-	buttonGroup.addEventListener('change', this._handleSortChange.bind(this));
+	buttonGroup.addEventListener('change', this.sortingMultyCallback.bind(this));
 };
 
 Demo.prototype._handleSortChange = function (evt) {
@@ -190,36 +217,39 @@ Demo.prototype._handleSearchKeyup = function (evt) {
 	});
 };
 
+Demo.prototype.addTransition = function() {
+	var elements;
+	var windowHeight;
+
+	function init() {
+		elements = document.querySelectorAll('.hidden');
+		windowHeight = window.innerHeight;
+	}
+
+	function checkPosition() {
+		for (var i = 0; i < elements.length; i++) {
+			var element = elements[i];
+			var positionFromTop = elements[i].getBoundingClientRect().top;
+
+			if (positionFromTop - windowHeight <= 0) {
+				element.classList.remove('hidden');
+				element.classList.add('fade-in-element');
+			}
+			else{
+				element.classList.remove('fade-in-element');
+				element.classList.add('hidden');
+			}
+		}
+	}
+	window.addEventListener('scroll', checkPosition);
+	window.addEventListener('resize', init);
+	init();
+	checkPosition();
+};
+
 document.addEventListener('DOMContentLoaded', function () {
 	document.querySelectorAll(".shuffle-grid-container").forEach(function(container) {
 		window.demo = new Demo(container);
 	});
 });
 
-(function() {
-    var elements;
-    var windowHeight;
-
-    function init() {
-        elements = document.querySelectorAll('.hidden');
-        windowHeight = window.innerHeight;
-    }
-
-    function checkPosition() {
-        for (var i = 0; i < elements.length; i++) {
-            var element = elements[i];
-            var positionFromTop = elements[i].getBoundingClientRect().top;
-
-            if (positionFromTop - windowHeight <= 0) {
-                element.classList.add('fade-in-element');
-                element.classList.remove('hidden');
-            }
-        }
-    }
-
-    window.addEventListener('scroll', checkPosition);
-    window.addEventListener('resize', init);
-
-    init();
-    checkPosition();
-})();
