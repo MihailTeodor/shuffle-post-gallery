@@ -37,21 +37,72 @@ if ( ! class_exists( 'Shuffle_Post_Gallery' ) ) {
 
 		// This function will generate the shortcode outout (HTML) and enqueue scripts
 		public function output_gallery( $atts ) {
-		    // Get the number of total posts
+
+            extract(shortcode_atts(array(
+                'category'                            => '',
+                'hide_post'                          => array(),
+                'posts'                               => array(),
+                'taxonomy'                            => 'category',
+            ), $atts));
+
+            $cat 				= (!empty($category)) 				? explode(',', $category) 		: '';
+            $taxonomy 			= !empty($taxonomy)					? $taxonomy						: 'category';
+            $exclude_post		= !empty($hide_post)				? explode(',', $hide_post) 		: array();
+            $posts				= !empty($posts)					? explode(',', $posts) 			: array();
+
+
+
+
+            // Get the number of total posts
             $nr_posts = wp_count_posts() -> publish;
-			// Get posts to show
-			$wp_query = new WP_Query( array(
-				'post_type'      => 'post',
-				'posts_per_page' => $nr_posts,
-				'order'          => 'DESC',
-				'orderby'        => 'ID',
-				'meta_query'     => array(
-					array(
-						'key'     => '_thumbnail_id',
-						'compare' => 'EXISTS'
-					)
-				)
-			) );
+
+            // WP Query Parameters
+            $args = array (
+                'post_type'      	=> 'post',
+                'post_status'		=> array( 'publish' ),
+                'order'          	=> 'DESC',
+                'orderby'           => 'ID',
+                'posts_per_page' 	=> $nr_posts,
+                'post__not_in'	 	=> $exclude_post,
+                'post__in'			=> $posts,
+                'meta_query'     => array(
+                    array(
+                        'key'     => '_thumbnail_id',
+                        'compare' => 'EXISTS'
+                    )
+                )
+            );
+
+            // Category Parameter
+            if( $cat != "") {
+
+                $args['tax_query'] = array(
+                    array(
+                        'taxonomy' 		=> $taxonomy,
+                        'field' 		=> 'term_id',
+                        'terms' 		=> $cat,
+                    ));
+            }
+
+            $wp_query = new WP_Query($args);
+            $post_count = $wp_query->post_count;
+
+
+//			// Get posts to show
+//			$wp_query = new WP_Query( array(
+//				'post_type'      => 'post',
+//                'post__not_in'	 	=> $exclude_post,
+//                'post__in'			=> $posts,
+//                'posts_per_page' => $nr_posts,
+//				'order'          => 'DESC',
+//				'orderby'        => 'ID',
+//				'meta_query'     => array(
+//					array(
+//						'key'     => '_thumbnail_id',
+//						'compare' => 'EXISTS'
+//					)
+//				)
+//			) );
 
 			// If no posts, return empty content
 			if ( $wp_query->found_posts < 1 ) return '';
@@ -137,4 +188,5 @@ if ( ! class_exists( 'Shuffle_Post_Gallery' ) ) {
 		}
 	}
 }
+require_once('spg-how-it-works.php' );
 Shuffle_Post_Gallery::getInstance();
