@@ -178,6 +178,16 @@ Demo.prototype._handleSortChange = function (evt) {
 	this.shuffle.sort(options);
 };
 
+/**
+ * Function needed to give time to _handleSearchKeyup() to make transitions of images before invoking the addTransition() method.
+ */
+Demo.prototype.searchMultyCallback = function (evt) {
+	this._handleSearchKeyup(evt);
+	sleep(4).then(() => {
+		this.addTransition();
+	})
+}
+
 // Advanced filtering
 Demo.prototype.addSearchFilter = function () {
 	var searchInput = document.querySelector('.js-shuffle-search');
@@ -186,7 +196,7 @@ Demo.prototype.addSearchFilter = function () {
 		return;
 	}
 
-	searchInput.addEventListener('input', this._handleSearchKeyup.bind(this));
+	searchInput.addEventListener('input', this.searchMultyCallback.bind(this));
 };
 
 /**

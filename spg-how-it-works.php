@@ -100,7 +100,7 @@ function spg_howitwork_page() { ?>
                                             <td>
                                                 <span class="spg-shortcode-preview">[ShuffleGallery] </span> – <?php _e('Default Shortcode. All published posts will be displayed in the gallery.', 'shuffle-post-gallery'); ?><br/>
                                                 <span class="spg-shortcode-preview">[ShuffleGallery category="id1, id2 ..."] </span> – <?php _e('This shortcode will display only the posts that belong to the specified categories.', 'shuffle-post-gallery'); ?><br/>
-                                                <span class="spg-shortcode-preview">[ShuffleGallery hide-post="id1, id2, ..."] </span> – <?php _e('This shortcode will EXCLUDE the specified posts from the gallery.', 'shuffle-post-gallery'); ?><br/>
+                                                <span class="spg-shortcode-preview">[ShuffleGallery hide_post="id1, id2, ..."] </span> – <?php _e('This shortcode will EXCLUDE the specified posts from the gallery.', 'shuffle-post-gallery'); ?><br/>
                                                 <span class="spg-shortcode-preview">[ShuffleGallery posts="id1, id2, ..."] </span> – <?php _e('This shortcode will display ONLY the specified posts.', 'shuffle-post-gallery'); ?><br/>
                                             </td>
                                         </tr>
